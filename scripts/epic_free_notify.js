@@ -6,7 +6,7 @@
  */
 const $ = new Env('Epic免费游戏查询')
 
-const notify = require('./sendNotify')
+const notify = require('../sendNotify')
 
 !(async () => {
 	const url = 'https://store-site-backend-static-ipv4.ak.epicgames.com/freeGamesPromotions?locale=zh-CN'
