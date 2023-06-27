@@ -4,6 +4,8 @@
  * epic 每周免费游戏通知
  *
  */
+const notify = require('./sendNotify')
+
 const $ = new Env('')
 
 !(async () => {})()
@@ -82,7 +84,6 @@ function Env(name) {
 		async showmsg() {
 			if (!this.notifyFlag) return
 			if (!this.notifyStr.length) return
-			var notify = require('./sendNotify')
 			this.log('\n============== 📣 推送开始 📣 ==============')
 			await notify.sendNotify(this.name, this.notifyStr.join('\n'))
 			this.log('\n============== 📣 推送结束 📣 ==============')

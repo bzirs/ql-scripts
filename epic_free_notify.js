@@ -1,17 +1,17 @@
 /**
- * cron: 0 21 10 * 5
+ * cron: 21 10 * * 5
  *
  * epic 每周免费游戏通知
  *
  */
 const $ = new Env('Epic免费游戏查询')
 
+const notify = require('./sendNotify')
+
 !(async () => {
 	const url = 'https://store-site-backend-static-ipv4.ak.epicgames.com/freeGamesPromotions?locale=zh-CN'
 
 	const axios = require('axios')
-
-	const notify = require('./sendNotify')
 
 	try {
 		const data = await axios.get(url)
