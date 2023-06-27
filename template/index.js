@@ -4,9 +4,10 @@
  * epic 每周免费游戏通知
  *
  */
-const notify = require('./sendNotify')
 
 const $ = new Env('')
+// 通知依赖
+const notify = require('../sendNotify')
 
 !(async () => {})()
 	.catch(e => $.log(e))
@@ -17,7 +18,7 @@ function Env(name) {
 		constructor(name) {
 			this.name = name
 			this.startTime = Date.now()
-			this.log(`🔔${this.name}, 开始运行!\n`, { time: true })
+			this.log(`🔔${this.name}, 开始运行!\n`)
 			this.notifyStr = []
 			this.notifyFlag = true
 			this.userIdx = 0
@@ -158,7 +159,7 @@ function Env(name) {
 			let e = Date.now()
 			let s = (e - this.startTime) / 1000
 			this.log('')
-			this.log(`🔔${this.name}, 运行结束, 共运行了 🕛 ${s}秒`, { time: true })
+			this.log(`🔔${this.name}, 运行结束, 共运行了 🕛 ${s}秒`)
 			process.exit(0)
 		}
 	})(name)
