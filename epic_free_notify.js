@@ -11,19 +11,29 @@ const notify = require('./sendNotify')
 !(async () => {
 	const url = 'https://store-site-backend-static-ipv4.ak.epicgames.com/freeGamesPromotions?locale=zh-CN'
 
+	const infoUrl = 'https://store.epicgames.com/zh-CN/p/'
+
 	const axios = require('axios')
 
 	try {
 		const data = await axios.get(url)
 
-		data.data.data.Catalog.searchStore.elements.forEach(({ title, promotions }) => {
+		data.data.data.Catalog.searchStore.elements.forEach(({ title, promotions, productSlug }) => {
 			// 判断是否本周免费
 			if (promotions) {
 				// 本周促销
 				promotions.promotionalOffers.forEach(offers => {
 					const { startDate, endDate } = offers.promotionalOffers[0]
 
-					$.log(`游戏名称:${title} \n 促销开始时间:${startDate} \n 促销结束时间${endDate} \n`, { notify: true })
+					$.log(
+						`游戏名称:${title} \n 促销开始时间:${$.time('yyyy-MM-dd hh:mm:ss', startDate)} \n 促销结束时间${$.time(
+							'yyyy-MM-dd hh:mm:ss',
+							endDate
+						)} \n 前往领取: ${infoUrl + productSlug}`,
+						{
+							notify: true
+						}
+					)
 				})
 				// 即将促销活动
 				// promotions.upcomingPromotionalOffers
