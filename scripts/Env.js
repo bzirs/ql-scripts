@@ -13,6 +13,20 @@ function Env(name) {
 			this.userList = []
 			this.userCount = 0
 		}
+
+		isNode() {
+			return 'undefined' != typeof module && !!module.exports
+		}
+		isQuanX() {
+			return 'undefined' != typeof $task
+		}
+		isSurge() {
+			return 'undefined' != typeof $httpClient && 'undefined' == typeof $loon
+		}
+		isLoon() {
+			return 'undefined' != typeof $loon
+		}
+
 		log(msg, options = {}) {
 			let opt = { console: true }
 			Object.assign(opt, options)
